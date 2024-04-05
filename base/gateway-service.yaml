@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agola-gateway
+spec:
+  ports:
+    - port: 8000
+  selector:
+    app: agola
+    component: gateway-others
+  type: ClusterIP

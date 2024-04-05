@@ -1,0 +1,46 @@
+---
+# The gitserver. Since it'll primarily store temporary git build data the
+# simple way to deploy it is to use a deployment with 1 replica and an emptyDir
+# volume. A statefulset with 1 replica and a persistent volume will be a better
+# alternative.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agola-gitserver
+spec:
+  # Don't increase the replicas
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agola
+      component: gitserver
+  template:
+    metadata:
+      labels:
+        app: agola
+        component: gitserver
+    spec:
+      containers:
+        - name: agola
+          image: sorintlab/agola:v0.9.0
+          command:
+            - /bin/agola
+            - serve
+            - "--config"
+            - /mnt/agola/config/config.yml
+            - "--components"
+            - gitserver
+          env:
+          ports:
+            - containerPort: 4003
+          volumeMounts:
+            - name: config-volume
+              mountPath: /mnt/agola/config
+            - name: agola-localdata
+              mountPath: /mnt/agola/local
+      volumes:
+        - name: config-volume
+          configMap:
+            name: agola
+        - name: agola-localdata
+          emptyDir: {}
