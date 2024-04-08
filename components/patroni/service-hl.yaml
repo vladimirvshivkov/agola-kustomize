@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: patroni-hl
+  labels:
+    application: patroni
+    cluster-name: patroni
+spec:
+  clusterIP: None

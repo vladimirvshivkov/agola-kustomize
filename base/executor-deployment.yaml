@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agola-executor
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: agola
+      component: executor
+  template:
+    metadata:
+      labels:
+        app: agola
+        component: executor
+    spec:
+      containers:
+        - name: agola
+          image: sorintlab/agola:v0.9.0
+          command:
+            - /bin/agola
+            - serve
+            - "--config"
+            - /mnt/agola/config/config.yml
+            - "--components"
+            - executor
+          env:
+          ports:
+            - containerPort: 4001
+          volumeMounts:
+            - name: config-volume
+              mountPath: /mnt/agola/config
+            - name: agola-localdata
+              mountPath: /mnt/agola/local
+      volumes:
+        - name: config-volume
+          configMap:
+            name: agola
+        - name: agola-localdata
+          emptyDir: {}

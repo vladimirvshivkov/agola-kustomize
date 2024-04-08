@@ -1,0 +1,12 @@
+---
+# The service for internal components communication with the gitserver.
+apiVersion: v1
+kind: Service
+metadata:
+  name: agola-gitserver
+spec:
+  ports:
+    - port: 4003
+  selector:
+    app: agola
+    component: gitserver
