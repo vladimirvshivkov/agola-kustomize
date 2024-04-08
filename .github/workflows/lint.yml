@@ -1,7 +1,15 @@
-on: push
+name: 'Yamllint GitHub Actions'
+on:
+  - pull_request
 jobs:
-  lint:
+  yamllint:
+    name: 'Yamllint'
     runs-on: ubuntu-latest
     steps:
-      - name: Lint k8s manifest files
-        uses: Azure/k8s-lint@v2.0
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Yamllint'
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_strict: false
+          yamllint_comment: true
