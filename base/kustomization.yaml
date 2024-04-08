@@ -1,13 +1,14 @@
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- agola-configmap.yaml
-- configstore-deployment.yaml
-- configstore-service.yaml
-- executor-deployment.yaml
-- gateway-others-deployment.yaml
-- gateway-service.yaml
-- gitserver-deployment.yaml
-- gitserver-service.yaml
-- runservice-deployment.yaml
-- runservice-service.yaml
+  - agola-configmap.yaml
+  - configstore-deployment.yaml
+  - configstore-service.yaml
+  - executor-deployment.yaml
+  - gateway-others-deployment.yaml
+  - gateway-service.yaml
+  - gitserver-deployment.yaml
+  - gitserver-service.yaml
+  - runservice-deployment.yaml
+  - runservice-service.yaml

@@ -5,7 +5,7 @@ metadata:
   name: patroni-repl
   labels:
     application: patroni
-    cluster-name:  &cluster_name patroni
+    cluster-name: &cluster_name patroni
     role: replica
 spec:
   type: ClusterIP
@@ -14,5 +14,5 @@ spec:
     cluster-name: *cluster_name
     role: replica
   ports:
-  - port: 5432
-    targetPort: 5432
+    - port: 5432
+      targetPort: 5432

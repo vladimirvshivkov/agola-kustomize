@@ -8,8 +8,6 @@ roleRef:
   kind: ClusterRole
   name: patroni-k8s-ep-access
 subjects:
-- kind: ServiceAccount
-  name: patroni
-# The namespace must be specified explicitly.
-# If deploying to the different namespace you have to change it.
-  namespace: patroni
+  - kind: ServiceAccount
+    name: patroni
+    namespace: patroni

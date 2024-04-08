@@ -4,11 +4,11 @@ kind: ClusterRole
 metadata:
   name: patroni-k8s-ep-access
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - endpoints
-  resourceNames:
-  - kubernetes
-  verbs:
-  - get
+  - apiGroups:
+      - ""
+    resources:
+      - endpoints
+    resourceNames:
+      - kubernetes
+    verbs:
+      - get

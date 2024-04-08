@@ -8,5 +8,5 @@ roleRef:
   kind: Role
   name: patroni
 subjects:
-- kind: ServiceAccount
-  name: patroni
+  - kind: ServiceAccount
+    name: patroni
